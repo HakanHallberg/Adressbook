@@ -28,7 +28,7 @@ namespace Adressbook.Controllers
         // GET: Adresses
         public async Task<IActionResult> PersonBy(int id)
         {
-            return View(await _context.Adresses.ToListAsync());
+            return View(await _context.Adresses.Where(a => a.PersonID == id).ToListAsync());
         }
         // GET: Adresses/Details/5
         public async Task<IActionResult> Details(int? id)
