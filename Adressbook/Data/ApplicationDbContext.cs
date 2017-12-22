@@ -24,5 +24,6 @@ namespace Adressbook.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<Person> People { get; set; }
+        public DbSet<Adress> Adresses { get; set; }
     }
 }
