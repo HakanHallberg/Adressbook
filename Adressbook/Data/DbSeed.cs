@@ -24,6 +24,7 @@ namespace Adressbook.Data
             context.Adresses.Add(Vägen2);
             var Gatan = new Adress { AdressName = "Väggatan 13" };
             context.Adresses.Add(Gatan);
+            context.SaveChanges();
 
             
         }

@@ -32,5 +32,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PersonID">Edit</a> |
+    <a asp-controller = "Adresses" asp-action="PersonBy(int ID)" asp-route-id="@Model.PersonID">Adresses</a> |
     <a asp-action="Index">Back to List</a>
 </div>
