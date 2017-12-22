@@ -18,13 +18,15 @@ namespace Adressbook.Data
             context.People.Add(Mickey);
             context.SaveChanges();
 
-            var Adress1 = new Adress { AdressName = "Namngatan 12" };
+            var Adress1 = new Adress { AdressName = "Namngatan 12", PersonID = 0 };
             context.Adresses.Add(Adress1);
-            var Vägen2 = new Adress { AdressName = "Gatvägen 5" };
+            var Vägen2 = new Adress { AdressName = "Gatvägen 5", PersonID = 1 };
             context.Adresses.Add(Vägen2);
-            var Gatan = new Adress { AdressName = "Väggatan 13" };
+            var Gatan = new Adress { AdressName = "Väggatan 13", PersonID = 2 };
             context.Adresses.Add(Gatan);
             context.SaveChanges();
+
+            
 
             
         }

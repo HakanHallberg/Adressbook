@@ -17,9 +17,7 @@ namespace Adressbook.Models
         [Display(Name ="Last name")]
         [Required ]
         public string LastName { get; set; }
-        [Display(Name = "Adress")]
-        [Required]
-        public int AdressID { get; set; }
+        
 
     }
 }

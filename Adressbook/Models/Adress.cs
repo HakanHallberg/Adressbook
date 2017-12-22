@@ -9,7 +9,10 @@ namespace Adressbook.Models
     public class Adress
     {
         public int AdressID { get; set; }
+        [Display(Name = "Adress")]
         [Required]
         public string AdressName { get; set; }
+        public int PersonID { get; set; }
+        
     }
 }

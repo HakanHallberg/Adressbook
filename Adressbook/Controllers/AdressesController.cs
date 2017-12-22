@@ -25,6 +25,11 @@ namespace Adressbook.Controllers
             return View(await _context.Adresses.ToListAsync());
         }
 
+        // GET: Adresses
+        public async Task<IActionResult> PersonBy(int id)
+        {
+            return View(await _context.Adresses.ToListAsync());
+        }
         // GET: Adresses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
