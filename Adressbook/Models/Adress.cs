@@ -8,5 +8,6 @@ namespace Adressbook.Models
     public class Adress
     {
         public int AdressID { get; set; }
+        public string AdressName { get; set; }
     }
 }
