@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Adressbook.Data;
 using Adressbook.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Adressbook.Controllers
 {
     public class AdressesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<AdressesController> _logger;
 
-        public AdressesController(ApplicationDbContext context)
+        public AdressesController(ApplicationDbContext context, ILogger<AdressesController>logger)
         {
+            _logger = logger;
             _context = context;
         }
 
@@ -42,6 +45,7 @@ namespace Adressbook.Controllers
                 .SingleOrDefaultAsync(m => m.AdressID == id);
             if (adress == null)
             {
+                _logger.LogWarning("Could not find adress =" + adress.ToString());
                 return NotFound();
             }
 
