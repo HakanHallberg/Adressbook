@@ -10,7 +10,7 @@ namespace Adressbook.Data
     {
         public static void Seed(ApplicationDbContext context)
         {
-            var John = new Person { FirstName = "John", LastName = "Smith" };
+            var John = new Person { FirstName = "John@BlaH", LastName = "Smith" };
             context.People.Add(John);
             var Sara = new Person { FirstName = "Sara", LastName = "Johnson" };
             context.People.Add(Sara);
@@ -22,7 +22,7 @@ namespace Adressbook.Data
             context.Adresses.Add(Adress1);
             var Vägen2 = new Adress { AdressName = "Gatvägen 5", Person = Sara };
             context.Adresses.Add(Vägen2);
-            var Gatan = new Adress { AdressName = "Väggatan 13", Person = Mickey };
+            var Gatan = new Adress { AdressName = "Väggatan@13", Person = Mickey };
             context.Adresses.Add(Gatan);
             context.SaveChanges();
 

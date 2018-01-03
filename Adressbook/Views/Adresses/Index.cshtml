@@ -26,7 +26,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AdressID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AdressID">Details</a> |
+                <a asp-action="Details" asp-route-id="@item.AdressID"asp-route-slug="@Adressbook.Utils.Slug.Slugify(item.AdressName)">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.AdressID">Delete</a>
             </td>
         </tr>
