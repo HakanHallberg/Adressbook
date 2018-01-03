@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: antiquewhite;
+    text-shadow: 1px 1px 1px brown;
 }
 
 /* Wrapping element */
@@ -8,6 +10,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    border: 1px solid black;
+    border-radius: 16px;
 }
 
 /* Carousel */
@@ -32,4 +36,6 @@
     .carousel-caption {
         display: none;
     }
+
+
 }

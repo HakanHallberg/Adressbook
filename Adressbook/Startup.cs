@@ -61,7 +61,7 @@ namespace Adressbook
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+                    template: "{controller=People}/{action=Index}/{id?}/{slug?}");
             });
 
             DbSeed.Seed(context);
