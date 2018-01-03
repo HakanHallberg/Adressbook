@@ -40,7 +40,7 @@ namespace Adressbook.Controllers
                 .SingleOrDefaultAsync(m => m.PersonID == id);
             if (person == null)
             {
-                _logger.LogWarning("Could not find person with name =" + person.ToString());
+                _logger.LogWarning("Could not find person with name =" + id.ToString());
                 return NotFound();
             }
 

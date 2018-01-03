@@ -45,7 +45,7 @@ namespace Adressbook.Controllers
                 .SingleOrDefaultAsync(m => m.AdressID == id);
             if (adress == null)
             {
-                _logger.LogWarning("Could not find adress =" + adress.ToString());
+                _logger.LogWarning("Could not find adress =" + id.ToString());
                 return NotFound();
             }
 
