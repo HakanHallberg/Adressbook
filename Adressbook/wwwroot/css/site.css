@@ -5,6 +5,8 @@
     text-shadow: 1px 1px 1px brown;
 }
 
+
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -36,6 +38,4 @@
     .carousel-caption {
         display: none;
     }
-
-
 }

@@ -31,7 +31,7 @@ namespace Adressbook.Controllers
         // GET: Adresses
         public async Task<IActionResult> PersonBy(int id)
         {
-            return View(await _context.Adresses.Where(a => a.PersonID == id).ToListAsync());
+            return View("Index", await _context.Adresses.Where(a => a.PersonID == id).ToListAsync());
         }
         // GET: Adresses/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -58,18 +58,24 @@ namespace Adressbook.Controllers
             return View();
         }
 
+        public IActionResult CreateByPerson(int id)
+        {
+            Adress newAdress = new Adress { PersonID = id };
+            return View("Create", newAdress);
+        }
+
         // POST: Adresses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AdressID,AdressName")] Adress adress)
+        public async Task<IActionResult> Create([Bind("AdressID,AdressName,PersonID")] Adress adress)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(adress);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(PersonBy), new { id = adress.PersonID});
             }
             return View(adress);
         }
