@@ -8,16 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using Adressbook.Data;
 using Adressbook.Models;
 using Microsoft.Extensions.Logging;
+using Adressbook.Interfaces;
 
 namespace Adressbook.Controllers
 {
     public class PeopleController : Controller
     {
+        private ITimeProvider timeProvider;
+
         private readonly ApplicationDbContext _context;
         private readonly ILogger<PeopleController> _logger;
 
-        public PeopleController(ApplicationDbContext context, ILogger<PeopleController>logger)
+        public PeopleController(ApplicationDbContext context, ILogger<PeopleController>logger, ITimeProvider _timeProvider)
         {
+            timeProvider = _timeProvider;
             _context = context;
             _logger = logger;
         }
@@ -25,7 +29,21 @@ namespace Adressbook.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
+            ViewBag.Time = timeProvider.Now.ToString();
             return View(await _context.People.OrderBy(p => p.LastName).ToListAsync());
+        }
+
+        public IActionResult IncreaseMonth()
+        {
+            timeProvider.Now = timeProvider.Now.AddMonths(1);
+            
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult  DecreaseMonth()
+        {
+            timeProvider.Now = timeProvider.Now.AddMonths(-1);
+            return RedirectToAction("Index");
         }
 
         // GET: People/Details/5

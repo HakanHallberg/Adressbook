@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Adressbook.Models.Person>
+﻿@inject Adressbook.Interfaces.ITimeProvider myTimeProvider
+@model IEnumerable<Adressbook.Models.Person>
 
 @{
     ViewData["Title"] = "Index";

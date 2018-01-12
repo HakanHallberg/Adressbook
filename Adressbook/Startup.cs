@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Adressbook.Data;
 using Adressbook.Models;
 using Adressbook.Services;
+using Adressbook.Interfaces;
 
 namespace Adressbook
 {
@@ -36,6 +37,10 @@ namespace Adressbook
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+
+            ITimeProvider myFakeTimeProvider = new FakeTimeProvider();
+            myFakeTimeProvider.Now = new DateTime(2018, 2, 1);
+            services.AddSingleton<ITimeProvider>(new FakeTimeProvider());
             services.AddMvc();
         }
 

@@ -75,7 +75,7 @@ namespace Adressbook.Controllers
             {
                 _context.Add(adress);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(PersonBy), new { id = adress.PersonID});
+                return RedirectToAction(nameof(CreateByPerson), new { id = adress.PersonID});
             }
             return View(adress);
         }
