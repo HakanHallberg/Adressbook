@@ -1,4 +1,7 @@
 ﻿@inject Adressbook.Interfaces.ITimeProvider myTimeProvider
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@*@inject IHtmlLocalizer<SharedResources> sharedLocalizer;*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +21,11 @@
     </environment>
 </head>
 <body>
+    <div>
+        <a href="/?culture=no" style="margin-right:16px;">Norsk</a>
+        <a href="/?culture=en">Engelsk</a>
+    </div>
+    @*<div><p @sharedLocalizer["Welcome"]></p></div>*@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Adressbook.Models;
 using Adressbook.Interfaces;
+using Microsoft.Extensions.Localization;
+using Adressbook.Resources;
 
 namespace Adressbook.Controllers
 {
     public class HomeController : Controller
     {
         private ITimeProvider timeProvider;
-
-        public HomeController(ITimeProvider _timeProvider)
+        private IStringLocalizer _Localizer;
+        public HomeController(ITimeProvider _timeProvider, IStringLocalizerFactory factory)
         {
             timeProvider = _timeProvider;
+            _Localizer = factory.Create(typeof(SharedResources));
         }
 
         public IActionResult Index()

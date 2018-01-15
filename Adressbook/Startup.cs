@@ -12,6 +12,8 @@ using Adressbook.Data;
 using Adressbook.Models;
 using Adressbook.Services;
 using Adressbook.Interfaces;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Adressbook
 {
@@ -27,6 +29,7 @@ namespace Adressbook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -41,12 +44,29 @@ namespace Adressbook
             ITimeProvider myFakeTimeProvider = new FakeTimeProvider();
             myFakeTimeProvider.Now = new DateTime(2018, 2, 1);
             services.AddSingleton<ITimeProvider>(new FakeTimeProvider());
-            services.AddMvc();
+            services.AddLocalization(options => options.ResourcesPath = "");
+            services.AddMvc()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context)
         {
+            List<CultureInfo> supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("no"),
+                new CultureInfo("en")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("no"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
