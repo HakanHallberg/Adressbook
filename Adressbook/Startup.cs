@@ -52,8 +52,25 @@ namespace Adressbook
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext)
         {
+            app.Use((context, next) =>
+            {
+                var cultureQuery = context.Request.Query["culture"];
+                if (!string.IsNullOrWhiteSpace(cultureQuery))
+                {
+                    var culture = new CultureInfo(cultureQuery);
+                    CultureInfo.CurrentCulture = culture;
+                    CultureInfo.CurrentUICulture = culture;
+                }
+                else
+                {
+                    var culture = new CultureInfo("en-US");
+                    CultureInfo.CurrentCulture = culture;
+                    CultureInfo.CurrentUICulture = culture;
+                }
+                return next();
+            });
             List<CultureInfo> supportedCultures = new List<CultureInfo>
             {
                 new CultureInfo("no"),
@@ -89,7 +106,8 @@ namespace Adressbook
                     template: "{controller=People}/{action=Index}/{id?}/{slug?}");
             });
 
-            DbSeed.Seed(context);
+            DbSeed.Seed(dbContext);
         }
+
     }
 }
