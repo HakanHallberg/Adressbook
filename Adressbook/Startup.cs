@@ -12,7 +12,7 @@ using Adressbook.Data;
 using Adressbook.Models;
 using Adressbook.Services;
 using Adressbook.Interfaces;
-
+using System.Globalization;
 
 namespace Adressbook
 {
@@ -44,6 +44,7 @@ namespace Adressbook
             myFakeTimeProvider.Now = new DateTime(2018, 2, 1);
             services.AddSingleton<ITimeProvider>(new FakeTimeProvider());
 
+            services.AddLocalization();
             services.AddMvc();
   
             
@@ -66,6 +67,14 @@ namespace Adressbook
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.Use((request, next) =>
+            {
+                var sv = new CultureInfo("sv-SE");
+                System.Threading.Thread.CurrentThread.CurrentCulture = sv;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = sv;
+                return next();
+            });
 
             app.UseStaticFiles();
 
