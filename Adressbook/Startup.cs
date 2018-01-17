@@ -13,6 +13,7 @@ using Adressbook.Models;
 using Adressbook.Services;
 using Adressbook.Interfaces;
 using System.Globalization;
+using Adressbook.Resources;
 
 namespace Adressbook
 {
@@ -28,7 +29,7 @@ namespace Adressbook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -45,10 +46,15 @@ namespace Adressbook
             services.AddSingleton<ITimeProvider>(new FakeTimeProvider());
 
             services.AddLocalization();
-            services.AddMvc();
-  
-            
-        }
+            services.AddMvc()
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    factory.Create(typeof(SharedResources));
+                });
+
+        } 
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext)

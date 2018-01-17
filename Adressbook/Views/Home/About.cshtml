@@ -1,7 +1,10 @@
-﻿@{
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizerFactory Factory
+
+@{
     ViewData["Title"] = "About";
+    var localizer = Factory.Create(typeof(Adressbook.Resources.SharedResources));
 }
-<h2>@ViewData["Title"]</h2>
+<h2>@localizer["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>Use this area to provide additional information.</p>

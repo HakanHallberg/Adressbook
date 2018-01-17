@@ -56,5 +56,11 @@ namespace Adressbook.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Cool()
+        {
+            CoolViewModel m = new CoolViewModel { CoolMessage = "Really cool message" };
+            return View(m);
+        }
     }
 }
