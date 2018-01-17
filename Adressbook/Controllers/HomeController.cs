@@ -14,11 +14,11 @@ namespace Adressbook.Controllers
     public class HomeController : Controller
     {
         private ITimeProvider timeProvider;
-        private IStringLocalizer _Localizer;
-        public HomeController(ITimeProvider _timeProvider, IStringLocalizerFactory factory)
+        
+        public HomeController(ITimeProvider _timeProvider)
         {
             timeProvider = _timeProvider;
-            _Localizer = factory.Create(typeof(SharedResources));
+            
         }
 
         public IActionResult Index()
