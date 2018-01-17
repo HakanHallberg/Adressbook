@@ -24,11 +24,17 @@ namespace Adressbook.Data
             context.Adresses.Add(Vägen2);
             var Gatan = new Adress { AdressName = "Väggatan@13", Person = Mickey };
             context.Adresses.Add(Gatan);
+            
+
+
+            context.Translations.Add(
+                new Translation
+                {
+                    CultureCode = "sv-SE",
+                    Term = "Your contact page.",
+                    TranslatedTerm = "Ring mig icke!"
+                });
             context.SaveChanges();
-
-            
-
-            
         }
     }
 }

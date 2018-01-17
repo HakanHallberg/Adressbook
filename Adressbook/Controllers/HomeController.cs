@@ -29,12 +29,6 @@ namespace Adressbook.Controllers
         }
 
 
-
-
-
-
- 
-
         public IActionResult Index()
         {
             ViewBag.Time = timeProvider.Now.ToString();

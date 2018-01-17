@@ -51,6 +51,9 @@ namespace Adressbook
             myFakeTimeProvider.Now = new DateTime(2018, 2, 1);
             services.AddSingleton<ITimeProvider>(new FakeTimeProvider());
 
+            services.AddTransient<IStringLocalizer<HomeController>,
+                DbLocalizer>();
+
             services.AddLocalization();
             services.AddMvc()
                 .AddDataAnnotationsLocalization(options =>
@@ -63,7 +66,7 @@ namespace Adressbook
         
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, ApplicationDbContext context)
         {
            
                 
@@ -99,6 +102,7 @@ namespace Adressbook
                     template: "{controller=People}/{action=Index}/{id?}/{slug?}");
             });
 
+           // DbSeed.Seed(context);
             DbSeed.Seed(dbContext);
         }
 
