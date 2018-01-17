@@ -14,6 +14,9 @@ using Adressbook.Services;
 using Adressbook.Interfaces;
 using System.Globalization;
 using Adressbook.Resources;
+using Microsoft.Extensions.Localization;
+using Adressbook.Controllers;
+using Adressbook.Localizers;
 
 namespace Adressbook
 {
@@ -29,6 +32,9 @@ namespace Adressbook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<IStringLocalizer<HomeController>,
+                HomeStringLocalizer>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase(Configuration.GetConnectionString("DefaultConnection")));

@@ -13,8 +13,15 @@ namespace Adressbook.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(ITimeProvider _timeProvider, IStringLocalizerFactory factory)
+        private ITimeProvider timeProvider;
+        private readonly IStringLocalizerFactory factory;
+        private readonly IStringLocalizer localizer;
+        private readonly IStringLocalizer<HomeController> homeLocalizer;
+
+        public HomeController(ITimeProvider _timeProvider, IStringLocalizerFactory factory, IStringLocalizer<HomeController> homeLocalizer)
         {
+            this.homeLocalizer = homeLocalizer;
+
             timeProvider = _timeProvider;
 
             this.factory = factory;
@@ -23,9 +30,7 @@ namespace Adressbook.Controllers
 
 
 
-        private ITimeProvider timeProvider;
-        private readonly IStringLocalizerFactory factory;
-        private readonly IStringLocalizer localizer;
+
 
 
  
@@ -47,7 +52,7 @@ namespace Adressbook.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = homeLocalizer["Your contact page."];
 
             return View();
         }
